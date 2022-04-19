@@ -30,6 +30,15 @@ func TestFileSystemStore(t *testing.T) {
 		assertLeague(t, got, want)
 	})
 
+	t.Run("works with an empty file", func(t *testing.T) {
+		database, cleanDatabase := createTempFile(t, "")
+		defer cleanDatabase()
+
+		_, err := NewFileSystemPlayerStore(database)
+
+		assertNoError(t, err)
+	})
+
 	t.Run("get player score", func(t *testing.T) {
 		database, cleanDatabase := createTempFile(t, `[
 			{"Name":"Cleo", "Wins":10},
