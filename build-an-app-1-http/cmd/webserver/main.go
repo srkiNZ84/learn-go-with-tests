@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/srkiNZ84/learn-go-with-tests/build-an-app-1-http"
 	"log"
 	"net/http"
 	"os"
@@ -15,12 +16,12 @@ func main() {
 	if err != nil {
 		log.Fatalf("problem opening db %s, %v", dbFileName, err)
 	}
-	store, err := NewFileSystemPlayerStore(db)
+	store, err := poker.NewFileSystemPlayerStore(db)
 
 	if err != nil {
 		log.Fatalf("problem creating filesystem player store, %v", err)
 	}
-	server := NewPlayerServer(store)
+	server := poker.NewPlayerServer(store)
 	
 	if err := http.ListenAndServe(":5000", server); err != nil {
 		log.Fatalf("could not listen on port 5000 %v", err)
