@@ -17,7 +17,6 @@ type PlayerStore interface {
 
 type PlayerServer struct {
 	store PlayerStore
-	//router *http.ServeMux
 	http.Handler
 }
 
